@@ -10,10 +10,22 @@
       integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN"
       crossorigin="anonymous"
     />
+    <!--prettier-ignore-->
+    <link rel=”stylesheet” href=”https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.9.0/css/bootstrap-datepicker.min.css”>
+    <script src=”https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.9.0/js/bootstrap-datepicker.min.js”></script>
     <link href="styles/main.css" rel="stylesheet" />
   </head>
   <body>
     <header><h1>International Disaster Analytics Portal</h1></header>
+
+    <div class="card border-danger mb-3" style="max-width: 18rem;">
+      <div class="card-header">Current Disasters</div>
+      <div class="card-body text-danger">
+        <h5 class="card-title">Danger card title</h5>
+        <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+      </div>
+    </div>
+
     <form action="/search" method="get">
       <select
         class="form-select"
@@ -29,19 +41,7 @@
         <option value="days">Days from now</option>
       </select>
 
-      <select
-        class="form-select"
-        aria-label="Default select example"
-        name="selectValue2"
-        id="subMenu"
-      >
-        <option selected>Search By:</option>
-        <option value="location">Location</option>
-        <option value="category">Event</option>
-        <option value="date">Date</option>
-        <option value="status">Current Status</option>
-        <option value="days">Days from now</option>
-      </select>
+      <div id="subMenuContainer"></div>
 
       <button class="btn btn-primary" type="submit" value="search">
         Search
