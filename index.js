@@ -10,10 +10,11 @@ app.use(express.static("public"));
 app.get("/", async (req, res) => {
   try {
     const currentDisaster = await axios.get(
-      "https://eonet.gsfc.nasa.gov/api/v3/events?limit=5&days=20&source=InciWeb&status=open"
+      "https://eonet.gsfc.nasa.gov/api/v3/events?days=20&status=open"
     );
+    console.log(currentDisaster.data.events.length);
     res.render("index.ejs", {
-      cuurent: currentDisaster,
+      current: currentDisaster,
     });
   } catch (error) {
     console.error("Failed to make request", error.message);
