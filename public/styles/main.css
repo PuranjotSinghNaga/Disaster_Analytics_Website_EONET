@@ -1,3 +1,7 @@
+body {
+  background-color: #f1f1f1;
+}
+
 .form-select {
   max-width: 50%;
   margin: 1em;
@@ -9,9 +13,20 @@
 .datePicker {
   margin: 1em;
 }
+.card-text {
+  margin: 0 0 0 0;
+}
 .btn {
   margin: 1em;
 }
 .daysInput {
   margin: 1em;
+}
+.danger-container {
+  display: flex;
+  justify-content: center;
+  gap: 6em;
+}
+.danger-container > * {
+  min-width: 20%;
 }

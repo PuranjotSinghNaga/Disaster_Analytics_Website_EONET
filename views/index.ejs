@@ -10,6 +10,7 @@
       integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN"
       crossorigin="anonymous"
     />
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <link href="styles/main.css" rel="stylesheet" />
   </head>
   <body>
@@ -24,72 +25,58 @@
     </div>
 
     <% }else{ %>
-
-    <div id="currentCarousel" class="carousel slide">
-      <div class="carousel-inner">
-        <div class="carousel-item active">
-          <div class="card border-danger mb-3" style="max-width: 18rem">
-            <div class="card-header">Current Disasters</div>
-            <div class="card-body text-danger">
-              <h5 class="card-title"><%= current.data.events[0].title %></h5>
-              <p class="card-text">
-                Desciption: <%= current.data.events[0].description %>
-              </p>
-            </div>
-          </div>
-        </div>
-        <div class="carousel-item">
-          <div class="card border-danger mb-3" style="max-width: 18rem">
-            <div class="card-header">Current Disasters</div>
-            <div class="card-body text-danger">
-              <h5 class="card-title"><%= current.data.events[1].title %></h5>
-              <p class="card-text">
-                Desciption: <%= current.data.events[1].description %>
-              </p>
-            </div>
-          </div>
-        </div>
-        <div class="carousel-item">
-          <div class="card border-danger mb-3" style="max-width: 18rem">
-            <div class="card-header">Current Disasters</div>
-            <div class="card-body text-danger">
-              <h5 class="card-title"><%= current.data.events[2].title %></h5>
-              <p class="card-text">
-                Desciption: <%= current.data.events[2].description %>
-              </p>
-            </div>
-          </div>
+    <div class="danger-container">
+      <div class="card border-danger mb-3" style="max-width: 18rem">
+        <div class="card-header">Current Disasters</div>
+        <div class="card-body text-danger">
+          <h5 class="card-title"><%= current.data.events[0].title %></h5>
+          <p class="card-text" style="margin-top: 1rem">
+            <!--prettier-ignore-->
+            Date of Report: <%= current.data.events[0].geometry[0].date.slice(0,10) %>
+          </p>
+          <p class="card-text">
+            <!--prettier-ignore-->
+            Time of Report: <%= current.data.events[0].geometry[0].date.slice(11) %>
+          </p>
         </div>
       </div>
-      <button
-        class="carousel-control-prev"
-        type="button"
-        data-bs-target="#currentCarousel"
-        data-bs-slide="prev"
-      >
-        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-        <span class="visually-hidden">Previous</span>
-      </button>
-      <button
-        class="carousel-control-next"
-        type="button"
-        data-bs-target="#currentCarousel"
-        data-bs-slide="next"
-      >
-        <span class="carousel-control-next-icon" aria-hidden="true"></span>
-        <span class="visually-hidden">Next</span>
-      </button>
+      <div class="card border-danger mb-3" style="max-width: 18rem">
+        <div class="card-header">Current Disasters</div>
+        <div class="card-body text-danger">
+          <h5 class="card-title"><%= current.data.events[1].title %></h5>
+          <p class="card-text" style="margin-top: 1rem">
+            <!--prettier-ignore-->
+            Date of Report: <%= current.data.events[1].geometry[1].date.slice(0,10) %>
+          </p>
+          <p class="card-text">
+            <!--prettier-ignore-->
+            Time of Report: <%= current.data.events[1].geometry[1].date.slice(11) %>
+          </p>
+        </div>
+      </div>
+      <div class="card border-danger mb-3" style="max-width: 18rem">
+        <div class="card-header">Current Disasters</div>
+        <div class="card-body text-danger">
+          <h5 class="card-title"><%= current.data.events[2].title %></h5>
+          <p class="card-text" style="margin-top: 1rem">
+            <!--prettier-ignore-->
+            Date of Report: <%= current.data.events[2].geometry[2].date.slice(0,10) %>
+          </p>
+          <p class="card-text">
+            <!--prettier-ignore-->
+            Time of Report: <%= current.data.events[2].geometry[2].date.slice(11) %>
+          </p>
+        </div>
+      </div>
     </div>
-
     <% }} %>
-
+    <!--prettier-ignore-->
     <form action="/search" method="get">
       <select
         class="form-select"
         aria-label="Default select example"
         name="selectValue1"
-        id="mainMenu"
-      >
+        id="mainMenu">
         <option selected>Search By:</option>
         <option value="location">Location</option>
         <option value="category">Event</option>
@@ -104,7 +91,35 @@
         Search
       </button>
     </form>
+    <% if (locals.response){ %>
+    <!--prettier-ignore-->
+    <% if (response.data.events.length !== 0){%>
+    <div class="query-container">
+      <div class="card">
+        <div class="card-body">
+          <h3>Query Result:</h3>
+          <p class="card-text">
+            Total Results:<%= response.data.events.length %>
+          </p>
+        </div>
+      </div>
+    </div>
+    <ul>
+      <% response.data.events.forEach(element => { %> <% var listdemo = [] %> <%
+      listdemo.push(element) %> <% listdemo.forEach(element => { %>
+      <li><%= element.title %></li>
+      <% }); %> <% }); %>
+    </ul>
+    <% }else{ %>
 
+    <div class="query-container">
+      <div class="card">
+        <div class="card-body">
+          <h3 class="card-title">No Record for the query !!</h3>
+        </div>
+      </div>
+    </div>
+    <% } }%>
     <script src="scripts.js"></script>
   </body>
 </html>
