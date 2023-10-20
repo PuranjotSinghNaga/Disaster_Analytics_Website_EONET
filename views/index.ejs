@@ -24,15 +24,63 @@
     </div>
 
     <% }else{ %>
-    <div class="card border-danger mb-3" style="max-width: 18rem">
-      <div class="card-header">Current Disasters</div>
-      <div class="card-body text-danger">
-        <h5 class="card-title"><%= current.data.events[0].title %></h5>
-        <p class="card-text">
-          Desciption: <%= current.data.events[0].description %>
-        </p>
+
+    <div id="currentCarousel" class="carousel slide">
+      <div class="carousel-inner">
+        <div class="carousel-item active">
+          <div class="card border-danger mb-3" style="max-width: 18rem">
+            <div class="card-header">Current Disasters</div>
+            <div class="card-body text-danger">
+              <h5 class="card-title"><%= current.data.events[0].title %></h5>
+              <p class="card-text">
+                Desciption: <%= current.data.events[0].description %>
+              </p>
+            </div>
+          </div>
+        </div>
+        <div class="carousel-item">
+          <div class="card border-danger mb-3" style="max-width: 18rem">
+            <div class="card-header">Current Disasters</div>
+            <div class="card-body text-danger">
+              <h5 class="card-title"><%= current.data.events[1].title %></h5>
+              <p class="card-text">
+                Desciption: <%= current.data.events[1].description %>
+              </p>
+            </div>
+          </div>
+        </div>
+        <div class="carousel-item">
+          <div class="card border-danger mb-3" style="max-width: 18rem">
+            <div class="card-header">Current Disasters</div>
+            <div class="card-body text-danger">
+              <h5 class="card-title"><%= current.data.events[2].title %></h5>
+              <p class="card-text">
+                Desciption: <%= current.data.events[2].description %>
+              </p>
+            </div>
+          </div>
+        </div>
       </div>
+      <button
+        class="carousel-control-prev"
+        type="button"
+        data-bs-target="#currentCarousel"
+        data-bs-slide="prev"
+      >
+        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+        <span class="visually-hidden">Previous</span>
+      </button>
+      <button
+        class="carousel-control-next"
+        type="button"
+        data-bs-target="#currentCarousel"
+        data-bs-slide="next"
+      >
+        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+        <span class="visually-hidden">Next</span>
+      </button>
     </div>
+
     <% }} %>
 
     <form action="/search" method="get">
