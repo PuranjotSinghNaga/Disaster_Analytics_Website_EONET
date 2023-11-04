@@ -30,3 +30,7 @@ body {
 .danger-container > * {
   min-width: 20%;
 }
+
+#subMenuContainer {
+  padding-left: 1rem;
+}

@@ -46,11 +46,11 @@
           <h5 class="card-title"><%= current.data.events[1].title %></h5>
           <p class="card-text" style="margin-top: 1rem">
             <!--prettier-ignore-->
-            Date of Report: <%= current.data.events[1].geometry[1].date.slice(0,10) %>
+            Date of Report: <%= current.data.events[1].geometry[0].date.slice(0,10) %>
           </p>
           <p class="card-text">
             <!--prettier-ignore-->
-            Time of Report: <%= current.data.events[1].geometry[1].date.slice(11) %>
+            Time of Report: <%= current.data.events[1].geometry[0].date.slice(11) %>
           </p>
         </div>
       </div>
@@ -60,11 +60,11 @@
           <h5 class="card-title"><%= current.data.events[2].title %></h5>
           <p class="card-text" style="margin-top: 1rem">
             <!--prettier-ignore-->
-            Date of Report: <%= current.data.events[2].geometry[2].date.slice(0,10) %>
+            Date of Report: <%= current.data.events[2].geometry[0].date.slice(0,10) %>
           </p>
           <p class="card-text">
             <!--prettier-ignore-->
-            Time of Report: <%= current.data.events[2].geometry[2].date.slice(11) %>
+            Time of Report: <%= current.data.events[2].geometry[0].date.slice(11) %>
           </p>
         </div>
       </div>
@@ -84,16 +84,12 @@
         <option value="status">Current Status</option>
         <option value="days">Days from now</option>
       </select>
-
       <div id="subMenuContainer"></div>
-
       <button class="btn btn-primary" type="submit" value="search">
         Search
       </button>
     </form>
-    <% if (locals.response){ %>
-    <!--prettier-ignore-->
-    <% if (response.data.events.length !== 0){%>
+    <% if (locals.response){ %> <% if (response.data.events.length !== 0){%>
     <div class="query-container">
       <div class="card">
         <div class="card-body">
@@ -105,8 +101,11 @@
       </div>
     </div>
     <ul>
-      <% response.data.events.forEach(element => { %> <% var listdemo = [] %> <%
-      listdemo.push(element) %> <% listdemo.forEach(element => { %>
+      <!--prettier-ignore-->
+      <% response.data.events.forEach(element => { %> 
+      <% var listdemo = [] %>
+      <% listdemo.push(element) %>
+      <% listdemo.forEach(element => { %>
       <li><%= element.title %></li>
       <% }); %> <% }); %>
     </ul>

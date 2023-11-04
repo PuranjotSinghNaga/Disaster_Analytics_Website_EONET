@@ -2,14 +2,14 @@ var types = {
   category: [
     "Drought",
     "Dust Haze",
-    "Earthquake",
+    "Earthquakes",
     "Floods",
     "Landslides",
     "Man Made",
     "Sea and Lake Ice",
     "Severe Storms",
     "Snow",
-    "Extreme Temperatures",
+    "Temp Extremes",
     "Volcanoes",
     "Water Color",
     "Wildfires",
@@ -35,12 +35,31 @@ main.addEventListener("change", function () {
     subContainer.innerHTML = "";
     subContainer.appendChild(locationInput);
   } else if (selected_option === "date") {
-    locationInput = document.createElement("input");
-    locationInput.type = "date";
-    locationInput.name = "selectValue2";
-    locationInput.className = "datePicker";
+    var dateInput1 = document.createElement("input");
+    var dateInput2 = document.createElement("input");
+
+    dateInput1.type = "date";
+    dateInput2.type = "date";
+
+    dateInput1.name = "startDate";
+    dateInput2.name = "endDate";
+
+    dateInput1.className = "datePicker";
+    dateInput2.className = "datePicker";
+
+    var label1 = document.createElement("label");
+    label1.htmlFor = "startDate";
+    label1.textContent = "Start Date";
+
+    var label2 = document.createElement("label");
+    label2.htmlFor = "endDate";
+    label2.textContent = "End Date";
+
     subContainer.innerHTML = "";
-    subContainer.appendChild(locationInput);
+    subContainer.appendChild(label1);
+    subContainer.appendChild(dateInput1);
+    subContainer.appendChild(label2);
+    subContainer.appendChild(dateInput2);
   } else if (selected_option === "days") {
     locationInput = document.createElement("input");
     locationInput.type = "number";

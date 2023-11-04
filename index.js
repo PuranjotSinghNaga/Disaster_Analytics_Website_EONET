@@ -1,4 +1,4 @@
-import express, { response } from "express";
+import express from "express";
 import axios from "axios";
 import bodyParser from "body-parser";
 
@@ -25,23 +25,34 @@ app.get("/", async (req, res) => {
 app.get("/search", async (req, res) => {
   try {
     var formValue1 = req.query.selectValue1;
-    var formValue2 = req.query.selectValue2.replace(/\s/g, "").toLowerCase();
     const currentDisaster = await axios.get(
       "https://eonet.gsfc.nasa.gov/api/v3/events?days=20&status=open"
     );
-    console.log(
-      `https://eonet.gsfc.nasa.gov/api/v3/events?${formValue1}=${formValue2}`
-    );
-    const response = await axios.get(
-      `https://eonet.gsfc.nasa.gov/api/v3/events?${formValue1}=${formValue2}`
-    );
 
-    console.log(formValue1);
-    console.log(formValue2.toLowerCase());
-
+    if (formValue1 == "date") {
+      var startDate = req.query.startDate;
+      var endDate = req.query.endDate;
+      console.log(startDate);
+      console.log(endDate);
+      var response_ejs = await axios.get(
+        `https://eonet.gsfc.nasa.gov/api/v3/events?start=${startDate}&end=${endDate}`
+      );
+      console.log(
+        `https://eonet.gsfc.nasa.gov/api/v3/events?start=${startDate}&end=${endDate}`
+      );
+      console.log(response_ejs.data.events.length);
+    } else {
+      var formValue2 = req.query.selectValue2.replace(/\s/g, "").toLowerCase();
+      response_ejs = await axios.get(
+        `https://eonet.gsfc.nasa.gov/api/v3/events?${formValue1}=${formValue2}`
+      );
+      console.log(
+        `https://eonet.gsfc.nasa.gov/api/v3/events?${formValue1}=${formValue2}`
+      );
+    }
     res.render("index.ejs", {
       current: currentDisaster,
-      response: response,
+      response: response_ejs,
     });
   } catch (error) {
     console.error("Failed to make request", error.message);
